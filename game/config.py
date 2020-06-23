@@ -4,3 +4,4 @@ HEIGHT=400
 TITLE="Codigo Facilito - Game"
 
 BLACK=(0,0,0)
+GREEN=(69,184,61)
