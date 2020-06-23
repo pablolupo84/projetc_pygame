@@ -41,6 +41,10 @@ class Game:
                 self.running=False
                 pygame.quit()
                 sys.exit()
+        key=pygame.key.get_pressed()
+
+        if key[pygame.K_SPACE]:
+            self.player.jump()
                 
     def draw(self):
         self.surface.fill(BLACK)

@@ -22,6 +22,9 @@ class Player (pygame.sprite.Sprite):
         if result:
             self.vel_y=0
             self.pos_y=platform.rect.top
+            
+    def jump(self):
+        self.vel_y=-5
 
     def update_pos(self):
         self.vel_y += 1.2
