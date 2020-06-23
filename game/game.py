@@ -52,6 +52,8 @@ class Game:
         pygame.display.flip()
 
         self.sprites.update()
+
+        self.player.validate_platform(self.platform)
         
     def stop(self):
         pass
