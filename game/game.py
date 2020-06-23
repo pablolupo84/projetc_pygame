@@ -5,6 +5,8 @@ from .config import *
 from .platform import Platform
 from .player import Player
 
+clock = pygame.time.Clock()
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -36,6 +38,7 @@ class Game:
             self.update()
             
     def events(self):
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 self.running=False
