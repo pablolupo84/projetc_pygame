@@ -31,7 +31,8 @@ class Game:
                 sys.exit()
                 
     def draw(self):
-        pass
+        self.surface.fill(BLACK)
+        
     def update(self):
         # pygame.display.update()
         pygame.display.flip()
