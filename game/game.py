@@ -49,9 +49,7 @@ class Game:
 
                 self.sprites.add(wall)
                 self.walls.add(wall)
-
-
-            
+          
     def run(self):
         while self.running:
             self.events()
@@ -82,6 +80,11 @@ class Game:
         self.sprites.update()
 
         self.player.validate_platform(self.platform)
+
+        wall = self.player.collide_with(self.walls)
+
+        if wall:
+            self.stop()
         
     def stop(self):
-        pass
+        print("Esxiste una colision")
