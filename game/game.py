@@ -16,6 +16,7 @@ class Game:
         pygame.display.set_caption(TITLE)
 
         self.running=True
+        self.playing=True
         
     def start(self):
         self.new()
@@ -74,17 +75,23 @@ class Game:
         self.sprites.draw(self.surface)
         
     def update(self):
-        # pygame.display.update()
-        pygame.display.flip()
-
-        self.sprites.update()
-
-        self.player.validate_platform(self.platform)
-
-        wall = self.player.collide_with(self.walls)
-
-        if wall:
-            self.stop()
-        
+        if self.playing:
+            # pygame.display.update()
+            pygame.display.flip()
+            
+            wall = self.player.collide_with(self.walls)
+            if wall:
+                self.stop()
+                
+            self.sprites.update()
+            self.player.validate_platform(self.platform)
+            
     def stop(self):
-        print("Esxiste una colision")
+        # print("Esxiste una colision")
+        self.player.stop()
+        self.stop_elements(self.walls)
+        self.playing=False
+
+    def stop_elements(self,elements):
+        for element in elements:
+            element.stop()
