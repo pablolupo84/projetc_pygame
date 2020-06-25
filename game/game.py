@@ -6,6 +6,7 @@ from .config import *
 from .platform import Platform
 from .player import Player
 from .wall import Wall
+from .coin import Coin
 
 # clock = pygame.time.Clock()
 
@@ -35,11 +36,13 @@ class Game:
 
         self.sprites=pygame.sprite.Group()
         self.walls=pygame.sprite.Group()
+        self.coins=pygame.sprite.Group()
         
         self.sprites.add(self.platform)
         self.sprites.add(self.player)
         # self.sprites.add(self.wall)
         self.generate_walls()
+        self.generate_coins()
         
     def generate_walls(self):
         last_position=WIDTH + 100
@@ -52,6 +55,20 @@ class Game:
 
                 self.sprites.add(wall)
                 self.walls.add(wall)
+
+    def generate_coins(self):
+        last_position=WIDTH + 100
+
+        for c in range(0,MAX_COINS):
+            pos_x=random.randrange(last_position+180,last_position+300)
+
+            coin=Coin(pos_x,150)
+                
+            last_position=coin.rect.right
+
+            self.sprites.add(coin)
+            self.coins.add(coin)
+        
           
     def run(self):
         while self.running:
