@@ -25,6 +25,7 @@ class Game:
         self.new()
     
     def new(self):
+        self.score=0
         self.generate_elements()
         self.run()
 
@@ -104,10 +105,19 @@ class Game:
                     self.player.skid(wall)
                 else:
                     self.stop()
-                
+            coin=self.player.collide_with(self.coins)
+            if coin:
+                self.score+=1
+                coin.kill()
+
+                print(self.score)
+
             self.sprites.update()
             self.player.validate_platform(self.platform)
+            
             self.update_elements(self.walls)
+            self.update_elements(self.coins)
+            
             self.generate_walls()
 
     def update_elements(self,elements):
