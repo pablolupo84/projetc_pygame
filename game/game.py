@@ -20,6 +20,8 @@ class Game:
         self.playing=True
 
         self.clock = pygame.time.Clock()
+
+        self.font=pygame.font.match_font(FONT)
         
     def start(self):
         self.new()
@@ -91,6 +93,7 @@ class Game:
                 
     def draw(self):
         self.surface.fill(BLACK)
+        self.draw_text()
 
         self.sprites.draw(self.surface)
         
@@ -110,7 +113,7 @@ class Game:
                 self.score+=1
                 coin.kill()
 
-                print(self.score)
+                # print(self.score)
 
             self.sprites.update()
             self.player.validate_platform(self.platform)
@@ -135,3 +138,19 @@ class Game:
     def stop_elements(self,elements):
         for element in elements:
             element.stop()
+
+    def score_format(self):
+        return 'Score: {}'.format(self.score)
+    
+    def draw_text(self):
+        self.display_text(self.score_format(),36,WHITE,WIDTH//2,30)
+
+    def display_text(self,text,size,color,pos_x,pos_y):
+        font=pygame.font.Font(self.font,size)
+        text=font.render(text,True,color)
+
+        rect=text.get_rect()
+        rect.midtop=(pos_x,pos_y)
+
+        self.surface.blit(text,rect)
+        
