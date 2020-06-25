@@ -105,10 +105,10 @@ class Game:
     def draw(self):
         # self.surface.fill(BLACK)
         self.surface.blit(self.background,(0,0))
-        self.draw_text()
+        # self.draw_text()
 
         self.sprites.draw(self.surface)
-
+        self.draw_text()
         pygame.display.flip()
         
     def update(self):
