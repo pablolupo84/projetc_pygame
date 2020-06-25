@@ -1,3 +1,4 @@
+import os
 import pygame
 import sys
 import random
@@ -7,8 +8,6 @@ from .platform import Platform
 from .player import Player
 from .wall import Wall
 from .coin import Coin
-
-# clock = pygame.time.Clock()
 
 class Game:
     def __init__(self):
@@ -22,6 +21,9 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.font=pygame.font.match_font(FONT)
+
+        self.dir=os.path.dirname(__file__)
+        self.dir_sounds=os.path.join(self.dir,'sources/sounds')
         
     def start(self):
         self.new()
@@ -113,6 +115,9 @@ class Game:
                 self.score+=1
                 coin.kill()
 
+                sound=pygame.mixer.Sound(os.path.join(self.dir_sounds,'coin.wav'))
+                sound.play()
+
                 # print(self.score)
 
             self.sprites.update()
@@ -131,6 +136,8 @@ class Game:
             
     def stop(self):
         # print("Esxiste una colision")
+        sound=pygame.mixer.Sound(os.path.join(self.dir_sounds,'lose.wav'))
+        sound.play()
         self.player.stop()
         self.stop_elements(self.walls)
         self.playing=False
